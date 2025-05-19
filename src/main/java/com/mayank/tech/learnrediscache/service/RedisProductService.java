@@ -1,6 +1,5 @@
 package com.mayank.tech.learnrediscache.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +8,11 @@ import com.mayank.tech.learnrediscache.model.Product;
 @Service
 public class RedisProductService {
 
-    @Autowired
-    private RedisTemplate<String, Product> redisTemplate;
+    private final RedisTemplate<String, Product> redisTemplate;
+    
+    public RedisProductService(RedisTemplate<String, Product> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     private static final String KEY = "RedisProduct::";
 
